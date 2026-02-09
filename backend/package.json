@@ -1,0 +1,44 @@
+{
+  "name": "yapit-backend",
+  "version": "1.0.0",
+  "description": "YapIt - Real-time messaging platform backend",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "keywords": [
+    "real-time",
+    "messaging",
+    "socket.io",
+    "websocket"
+  ],
+  "author": "Tanvi Agarwal",
+  "license": "MIT",
+  "dependencies": {
+    "cloudinary": "^2.2.0",
+    "express": "^4.18.2",
+    "socket.io": "^4.5.4",
+    "mongoose": "^7.0.0",
+    "jsonwebtoken": "^9.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.3",
+    "cors": "^2.8.5",
+    "express-validator": "^7.0.0",
+    "multer": "^1.4.5-lts.1",
+    "socket.io-client": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/bcryptjs": "^2.4.2",
+    "jest": "^29.5.0"
+  }
+}

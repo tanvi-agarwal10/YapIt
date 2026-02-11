@@ -16,8 +16,30 @@ const app: Express = express();
 const server = http.createServer(app);
 const io = new socketIO.Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || '*',
+    origin: function(origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+      // Allow requests with no origin (like mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      
+      // Allow specific origins from environment or default
+      const allowedOrigins = process.env.CORS_ORIGIN?.split(',') || [];
+      const defaultOrigin = 'http://localhost:3000';
+      
+      if (allowedOrigins.length > 0 && allowedOrigins[0] !== '') {
+        if (allowedOrigins.includes(origin)) {
+          return callback(null, true);
+        }
+        // For development allow localhost
+        if (origin.includes('localhost')) {
+          return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+      }
+      
+      // Default behavior - allow localhost
+      callback(null, true);
+    },
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 

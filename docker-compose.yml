@@ -26,7 +26,7 @@ services:
       PORT: 5000
       MONGODB_URI: mongodb://admin:password@mongodb:27017/yapit?authSource=admin
       JWT_SECRET: your_production_jwt_secret
-      CORS_ORIGIN: http://localhost:3000
+      CORS_ORIGIN: "*"
     depends_on:
       - mongodb
     networks:

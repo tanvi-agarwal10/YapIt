@@ -214,21 +214,21 @@ export default function Chat() {
 
   const visibleMessages = selectedUser
     ? messages.filter((msg: any) => {
-        const senderId = getId(msg.senderId);
-        const receiverId = getId(msg.receiverId);
-        const currentId = getId(userId);
-        const otherId = getId(selectedUser.id);
-        return (
-          (senderId === currentId && receiverId === otherId) ||
-          (senderId === otherId && receiverId === currentId)
-        );
-      })
+      const senderId = getId(msg.senderId);
+      const receiverId = getId(msg.receiverId);
+      const currentId = getId(userId);
+      const otherId = getId(selectedUser.id);
+      return (
+        (senderId === currentId && receiverId === otherId) ||
+        (senderId === otherId && receiverId === currentId)
+      );
+    })
     : [];
 
   const filteredMessages = searchText.trim()
     ? visibleMessages.filter((msg: any) =>
-        msg.content?.toLowerCase().includes(searchText.trim().toLowerCase())
-      )
+      msg.content?.toLowerCase().includes(searchText.trim().toLowerCase())
+    )
     : visibleMessages;
 
   const handleAttachClick = () => {
@@ -298,9 +298,8 @@ export default function Chat() {
         )}
 
         <aside
-          className={`fixed inset-y-0 left-0 z-40 w-[22rem] transform transition duration-300 lg:static lg:w-[24rem] ${
-            sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-          }`}
+          className={`fixed inset-y-0 left-0 z-40 w-[22rem] transform transition duration-300 lg:static lg:w-[24rem] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+            }`}
         >
           <div className="flex h-full">
             <div className="flex w-20 flex-col items-center gap-4 border-r border-white/5 bg-panel/90 py-6">
@@ -317,11 +316,10 @@ export default function Chat() {
                     <button
                       key={item.label}
                       onClick={() => setActiveNav(item.key as typeof activeNav)}
-                      className={`group flex h-11 w-11 items-center justify-center rounded-2xl transition ${
-                        activeNav === item.key
+                      className={`group flex h-11 w-11 items-center justify-center rounded-2xl transition ${activeNav === item.key
                           ? 'bg-white/10 text-white shadow-glow'
                           : 'bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white hover:shadow-glow'
-                      }`}
+                        }`}
                       title={item.label}
                     >
                       <Icon size={20} />
@@ -339,9 +337,8 @@ export default function Chat() {
                     )}
                   </div>
                   <span
-                    className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-panel ${
-                      isConnected ? 'bg-emerald-400' : 'bg-rose-500'
-                    }`}
+                    className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-panel ${isConnected ? 'bg-emerald-400' : 'bg-rose-500'
+                      }`}
                   />
                 </div>
                 <span className="text-[10px] uppercase tracking-[0.2em] text-slate-400">You</span>
@@ -415,11 +412,10 @@ export default function Chat() {
                           selectUser(user);
                           setSidebarOpen(false);
                         }}
-                        className={`group w-full rounded-2xl border px-3 py-3 text-left transition hover-lift ${
-                          selectedUser?.id === user.id
+                        className={`group w-full rounded-2xl border px-3 py-3 text-left transition hover-lift ${selectedUser?.id === user.id
                             ? 'border-white/20 bg-white/10 shadow-glow'
                             : 'border-transparent bg-white/5 hover:border-white/10 hover:bg-white/10'
-                        }`}
+                          }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className="relative">
@@ -431,9 +427,8 @@ export default function Chat() {
                               )}
                             </div>
                             <span
-                              className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-panel-2 ${
-                                user.isOnline ? 'bg-emerald-400' : 'bg-slate-500'
-                              }`}
+                              className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-panel-2 ${user.isOnline ? 'bg-emerald-400' : 'bg-slate-500'
+                                }`}
                             />
                           </div>
                           <div className="min-w-0 flex-1">
@@ -453,7 +448,7 @@ export default function Chat() {
           </div>
         </aside>
 
-        <div className="flex flex-1 flex-col">
+        <div className="relative flex flex-1 flex-col">
           <header className="glass-header sticky top-0 z-20">
             <div className="flex items-center justify-between px-4 py-3 lg:px-6">
               <div className="flex items-center gap-3">
@@ -562,11 +557,10 @@ export default function Chat() {
                           style={{ animationDelay: `${Math.min(idx, 10) * 18}ms` }}
                         >
                           <div
-                            className={`relative max-w-[70%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-soft ${
-                              isOwn
+                            className={`relative max-w-[70%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-soft ${isOwn
                                 ? 'bg-gradient-to-br from-neon-purple/90 to-neon-blue/90 text-white'
                                 : 'bg-white/5 text-slate-100 border border-white/10'
-                            }`}
+                              }`}
                           >
                             {attachment?.url && attachment?.type?.startsWith('image') ? (
                               <div className="space-y-2">
@@ -651,7 +645,7 @@ export default function Chat() {
                 onChange={handleFileSelected}
               />
               {showEmoji && (
-                <div className="absolute bottom-24 left-8 z-30 w-60 rounded-2xl border border-white/10 bg-panel-2/95 p-3 shadow-soft">
+                <div className="absolute bottom-24 left-8 z-50 w-60 rounded-2xl border border-white/10 bg-panel-2/95 p-3 shadow-soft">
                   <div className="mb-2 flex items-center justify-between">
                     <span className="text-xs uppercase tracking-[0.2em] text-slate-400">Emoji</span>
                     <button

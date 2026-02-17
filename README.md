@@ -1,6 +1,8 @@
 # 🚀 YapIt – Real-Time Conversation Platform
 
-![YapIt Banner](https://via.placeholder.com/1200x400?text=YapIt+Real-Time+Chat) <!-- Replace with actual banner if available -->
+# 🚀 YapIt – Real-Time Conversation Platform
+
+![YapIt Banner](./assets/banner.png)
 
 > **YapIt** is a modern, Gen-Z styled real-time conversation platform built for speed and seamless interaction. Leveraging the power of the **MERN stack** and **Socket.IO**, it enables instant messaging, media sharing, and presence tracking in a sleek, responsive interface.
 

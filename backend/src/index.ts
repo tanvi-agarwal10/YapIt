@@ -16,17 +16,49 @@ const app: Express = express();
 const server = http.createServer(app);
 const io = new socketIO.Server(server, {
   cors: {
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const normalizedOrigin = origin.replace(/\/$/, "");
+      if (allAllowedOrigins.indexOf(normalizedOrigin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST"],
     credentials: true
   },
 });
 
 // Middleware
-const allowedOrigin = process.env.CORS_ORIGIN || "http://localhost:3000";
+// Middleware
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:3000")
+  .split(',')
+  .map(origin => origin.trim().replace(/\/$/, "")); // Remove trailing slash
+
+const additionalOrigins = [
+  "http://localhost:3001",
+  "http://localhost:3002",
+  "http://localhost:3003"
+];
+
+const allAllowedOrigins = [...allowedOrigins, ...additionalOrigins];
 
 app.use(cors({
-  origin: allowedOrigin,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+
+    // Normalize the incoming origin just in case (though browsers usually don't send trailing slash)
+    const normalizedOrigin = origin.replace(/\/$/, "");
+
+    if (allAllowedOrigins.indexOf(normalizedOrigin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log('Blocked by CORS:', origin); // Helpful for debugging
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());

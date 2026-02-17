@@ -6,11 +6,17 @@ const apiClient = axios.create({
   baseURL: API_URL,
 });
 
-// Add token to requests
+if (typeof window !== 'undefined') {
+  console.log('API Client initialized with URL:', API_URL);
+}
+
+// Add token to requests - safely handle server-side rendering
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window !== 'undefined') {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
@@ -58,3 +64,4 @@ export const messageAPI = {
 };
 
 export default apiClient;
+

@@ -1,7 +1,5 @@
 # 🚀 YapIt – Real-Time Conversation Platform
 
-# 🚀 YapIt – Real-Time Conversation Platform
-
 ![YapIt Banner](./assets/banner.png)
 
 > **YapIt** is a modern, Gen-Z styled real-time conversation platform built for speed and seamless interaction. Leveraging the power of the **MERN stack** and **Socket.IO**, it enables instant messaging, media sharing, and presence tracking in a sleek, responsive interface.
@@ -151,3 +149,10 @@ This project is open source and available under the **MIT License**.
 **Tanvi Agarwal**
 
 -   GitHub: [@tanvi-agarwal10](https://github.com/tanvi-agarwal10)
+
+---
+
+## Deployed Link
+
+-   Frontend: https://yap-it-bytanvi.netlify.app/
+-   Backend: https://yapit-backend.onrender.com

@@ -1,114 +1,151 @@
-# YapIt – Real-Time Conversation Platform
+# 🚀 YapIt – Real-Time Conversation Platform
 
-## Project Description
+![YapIt Banner](https://via.placeholder.com/1200x400?text=YapIt+Real-Time+Chat) <!-- Replace with actual banner if available -->
 
-**YapIt** is a modern, Gen-Z styled **real-time conversation platform** built using the **MERN stack** and **Socket.IO**. The application enables users to communicate instantly through one-to-one messaging with real-time delivery, online presence tracking, and persistent chat history. YapIt focuses on fast, seamless, and interactive conversations by leveraging WebSocket-based communication instead of traditional request–response mechanisms.
-
-The platform provides a clean and minimal chat interface where users can securely register, log in, and start real-time conversations. Messages are delivered instantly without page refresh, and all chats are stored securely in the database for future access.
+> **YapIt** is a modern, Gen-Z styled real-time conversation platform built for speed and seamless interaction. Leveraging the power of the **MERN stack** and **Socket.IO**, it enables instant messaging, media sharing, and presence tracking in a sleek, responsive interface.
 
 ---
 
-## Problem Statement
+## ✨ Features
 
-Most traditional web applications rely on HTTP-based communication, which is not suitable for real-time interactions such as live chatting. This results in delayed message delivery, inefficient polling mechanisms, and poor user experience. Additionally, many beginner-level chat applications lack proper authentication, message persistence, and online/offline handling, making them unsuitable for real-world use.
-
-There is a need for a scalable and efficient real-time communication system that supports instant messaging, secure authentication, and reliable message storage.
-
----
-
-## Solution
-
-YapIt addresses these challenges by implementing **Socket.IO** to establish persistent, bi-directional communication between clients and the server. This allows messages to be sent and received instantly in real time. The backend ensures secure authentication using JWT, while MongoDB handles message persistence so that chat history is never lost.
-
-By combining REST APIs for authentication and chat history with WebSockets for live messaging, YapIt delivers a smooth and responsive real-time chat experience similar to modern messaging platforms.
+- **🔐 Secure Authentication**: JWT-based implementation for secure signup, login, and session management.
+- **💬 Real-Time Messaging**: Instant bi-directional communication using Socket.IO.
+- **📂 Media Sharing**: Send images and attachments seamlessly (integrated with Cloudinary).
+- **🟢 Presence Tracking**: See who's online in real-time.
+- **📝 Typing Indicators**: Visual cues when someone is typing.
+- **🎨 Modern UI/UX**: A responsive, neon-themed interface built with Tailwind CSS.
+- **⚙️ User Settings**: Customizable profile, privacy settings, and more.
+- **💾 Persistent History**: All conversations are securely stored in MongoDB.
 
 ---
 
-## Key Features
+## 🛠️ Technology Stack
 
-### Authentication & User Management
-
-* User registration and login with encrypted passwords
-* JWT-based authentication for secure access
-* Protected routes for authenticated users
-
-### Real-Time Chat Features
-
-* One-to-one real-time messaging using Socket.IO
-* Instant message delivery without page refresh
-* Online and offline user presence tracking
-* Automatic socket reconnection handling
-
-### Message Management
-
-* Persistent chat history stored in MongoDB
-* Message timestamps
-* Secure message transmission
-
-### User Interface
-
-* Clean, modern, Gen-Z styled UI
-* Responsive chat layout
-* Real-time UI updates on new messages
+| Component | Technology |
+|-----------|------------|
+| **Frontend** | [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/) |
+| **Backend** | [Node.js](https://nodejs.org/), [Express](https://expressjs.com/), [TypeScript](https://www.typescriptlang.org/) |
+| **Database** | [MongoDB](https://www.mongodb.com/) (Mongoose ODM) |
+| **Real-Time** | [Socket.IO](https://socket.io/) |
+| **Storage** | [Cloudinary](https://cloudinary.com/) |
+| **Deployment** | Docker, Render, Netlify |
 
 ---
 
-## Technology Stack
+## 🚀 Getting Started
 
-### Frontend
+### Prerequisites
 
-* React.js
-* Tailwind CSS
-* Socket.IO Client
+- [Node.js](https://nodejs.org/) (v16+)
+- [Docker](https://www.docker.com/) (optional, for containerized run)
+- [MongoDB](https://www.mongodb.com/) (Local or Atlas URI)
+- [Cloudinary Account](https://cloudinary.com/) (for media uploads)
 
-### Backend
+### 📥 Installation & Local Setup
 
-* Node.js
-* Express.js
-* Socket.IO
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/tanvi-agarwal10/YapIt.git
+    cd YapIt
+    ```
 
-### Database
+2.  **Setup the Backend:**
+    ```bash
+    cd backend
+    npm install
+    cp .env.example .env # Configure your .env variables
+    npm run dev
+    ```
 
-* MongoDB with Mongoose
+3.  **Setup the Frontend:**
+    ```bash
+    cd ../web
+    npm install
+    cp .env.example .env.local # Configure your environment variables
+    npm run dev
+    ```
 
-### Authentication & Security
+4.  **Access the App:**
+    -   Frontend: `http://localhost:3000`
+    -   Backend API: `http://localhost:5000`
 
-* JWT (JSON Web Tokens)
-* bcrypt (password hashing)
+### 🐳 Docker Setup
 
-### Optional Enhancements (Future Scope)
+Run the entire stack with a single command:
 
-* Group chats
-* Typing indicators
-* Read receipts
-* File and image sharing
-* Push notifications
-
----
-
-## System Architecture
-
-* REST APIs for authentication and initial data fetching
-* Socket.IO for real-time message exchange
-* MongoDB for storing users, conversations, and messages
-* Persistent WebSocket connections for instant communication
-
----
-
-## Targeted Audience
-
-* Students learning full-stack development
-* Developers exploring real-time web applications
-* Recruiters evaluating real-time system projects
-
----
-
-## Outcome
-
-By implementing YapIt, users experience a fast and responsive real-time messaging platform that closely resembles modern chat applications. The project demonstrates a strong understanding of real-time communication, event-driven architecture, authentication, and full-stack development. YapIt serves as a solid portfolio project that showcases practical use of Socket.IO and the MERN stack, making it highly suitable for internships and entry-level software development roles.
+```bash
+./deploy.sh
+# OR
+docker-compose up --build
+```
 
 ---
 
-## Author
+## 🔑 Environment Variables
+
+### Backend (`backend/.env`)
+
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/yapit
+JWT_SECRET=your_super_secret_key
+JWT_EXPIRE=7d
+CORS_ORIGIN=http://localhost:3000
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+### Frontend (`web/.env.local`)
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+NEXT_PUBLIC_SOCKET_URL=http://localhost:5000
+```
+
+---
+
+## 📂 Project Structure
+
+```
+YapIt/
+├── backend/            # Express.js API & Socket.IO Server
+│   ├── src/
+│   │   ├── controllers/# Route controllers
+│   │   ├── models/     # Mongoose models
+│   │   ├── routes/     # API routes
+│   │   └── socket/     # Socket.IO handlers
+├── web/                # Next.js Frontend
+│   ├── src/
+│   │   ├── components/ # React components
+│   │   ├── pages/      # Next.js pages
+│   │   └── utils/      # API & Socket clients
+├── docker-compose.yml  # Docker orchestration
+└── README.md           # Project documentation
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1.  Fork the project
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open source and available under the **MIT License**.
+
+---
+
+## 👤 Author
 
 **Tanvi Agarwal**
+
+-   GitHub: [@tanvi-agarwal10](https://github.com/tanvi-agarwal10)
